@@ -8,7 +8,17 @@
 */
 
 function isAnagram(str1, str2) {
-
+  if(str1.length!==str2.length){
+    return false;
+  }
+  str1=str1.toLowerCase().split('').sort();
+  str2=str2.toLowerCase().split('').sort();
+  // console.log(str1,str2);
+  return JSON.stringify(str1)===JSON.stringify(str2);
 }
 
 module.exports = isAnagram;
+// console.log(isAnagram('car','rac'));
+// console.log(isAnagram('Car','rac'));
+// console.log(isAnagram('aar','rac'));
+// console.log(isAnagram('@ar','a@r'));
