@@ -6,17 +6,27 @@
 
 
 function waitOneSecond() {
-
+    return new Promise(resolve=>setTimeout(resolve,1000));
 }
 
 function waitTwoSecond() {
-
+    return new Promise(resolve=>setTimeout(resolve,2000));
+    
 }
 
 function waitThreeSecond() {
-
+    return new Promise(resolve=>setTimeout(resolve,3000));
 }
 
 function calculateTime() {
+    let startTime=Date.now();
 
+    Promise.all([waitOneSecond(),waitTwoSecond(),waitThreeSecond()]).then(()=>{
+        let endTime=Date.now();
+        console.log((endTime-startTime)/1000);
+    });
+
+    setInterval(()=>console.log('ping'),1000);
 }
+
+calculateTime();

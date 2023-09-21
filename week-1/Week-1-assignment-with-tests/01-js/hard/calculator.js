@@ -17,6 +17,100 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+// class Calculator {
+//   constructor(){
+//     this.result=0;
+//   }
+//   add(a){
+//     this.result+=a;
+//   }
+//   subtract(a){
+//     this.result-=a;
+//   }
+//   multiply(a){
+//     this.result*=a;
+//   }
+//   divide(a){
+//     try{
+//       this.result/=a;
+//     }
+//     catch(err){
+//       throw new Error('Error');
+//     }
+//   }
+//   clear(){
+//     this.result=0;
+//   }
+//   getResult(){
+//     return this.result;
+//   }
+//   calculate(exp){
+//     console.log(exp);
+//     //remove spaces
+//     exp=exp.replace(/\s/g,'');
+//     console.log(exp);
+//     //if expression have non numericals throw error
+//     // exp.split('').map(char=>{if(isNaN(parseInt(char))){throw new Error('non numeric characters in expression.');}});
+//     for(let char of exp.split('')){
+//       if(isNaN(parseInt(char))){
+//         throw new Error('Error');
+//       }
+//     }
+//     //calc expression;
+//     this.result=eval(exp);
+//   }
+  
+
+// }
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add(number) {
+    this.result += number;
+  }
+
+  subtract(number) {
+    this.result -= number;
+  }
+
+  multiply(number) {
+    this.result *= number;
+  }
+
+  divide(number) {
+    if(number===0){
+      throw new Error('zero division error');
+    }
+    this.result /= number;
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(expression) {
+    // Remove multiple continuous spaces from the expression
+    const cleanedExpression = expression.replace(/\s+/g, ' ');
+
+    // Check for invalid non-numerical characters
+    if (!/^[\d\s+\-*/().]+$/.test(cleanedExpression)) {
+      throw new Error('Invalid expression: contains non-numerical characters');
+    }
+
+    // Evaluate the cleaned expression using eval()
+    let temp=eval(cleanedExpression);
+    if(temp===Infinity){
+      throw new Error('error');
+    }
+    this.result=temp;
+  }
+}
+
 
 module.exports = Calculator;
